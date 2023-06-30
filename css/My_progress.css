@@ -1,0 +1,137 @@
+.ProgressBtnBackAnimation{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    color: #ffd4d4;
+    
+    background-image: 
+    linear-gradient(90deg, rgb(0, 0, 0) 47%, rgb(150, 150, 150) 50%, rgb(0, 0, 0) 51%),
+    linear-gradient(180deg, rgb(255, 163, 163) 0%, rgb(255, 0, 0) 50%, rgb(146, 0, 0) 100%);
+    background-size: 2500% 100%,100% 100%;/*50% è la dimesione RL, 100% è TB*//*usa sempre un sottomultiplo di 100 sennò hai immagini a metà! */
+    background-blend-mode:screen;/*black has no effect, white returns white!*/
+ 
+    animation: slide2 10s linear infinite; 
+
+    border: 2px solid #ff0000;/*1px*/
+    border-radius: 8px;
+}
+
+@keyframes slide1 {from {background-position: 0% 0%; } to {background-position: 100% 0%; }}
+@keyframes slide2 {from {background-position: 100% 0%; } to {background-position: 0% 0%; }}
+  
+.ProgressBtnFrontAnimation{/*è il grigio, davanti */
+
+    position: absolute;/*absolute lo mette al centro della progressBar*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    color: #ffd4d4;/*$TxtColor;*/
+    
+  
+    background-image: linear-gradient(180deg, rgba(232,232,232,1) 0%, rgb(110, 113, 116) 100%);
+    clip-path: inset(0 0 0 0%);  /*inset è praticamente un rettangolo dai bordi, e dentro parentesi ho (top right bot left)*/
+    transition: clip-path 10s ease;
+    
+    /* border-color: $BgColor;*/
+    border: 2px solid #ff0000;/*1px*/
+    border-radius: 8px;
+  }
+  
+  .ProgressBtn { /*comuni ad entrambi, back and front!!*/
+    position: relative;
+    display: flex;
+    height: 25px;
+    /*// border: 2px solid;/*1px*/
+    /*// border-color: blue;
+    /* border: none;/*0px solid #566573;/*1px*/
+    /*// border-radius: 8px;*/
+    font-size: 18px;
+    font-weight: bold;
+    font-family: Courier, monospace;
+    overflow: hidden;/*croppa tutto quello che esce!*/
+    margin: 4px;
+  }
+
+
+
+
+
+  
+.btnSquareProgress{
+    user-select: none;
+    position: relative;
+    display: flex;
+    overflow: hidden;/*croppa tutto quello che esce!*/
+
+    /*border: none;  Remove borders */
+    /*outline: none; /* Remove outline */
+/*    background-color: rgba(255,255,255,0.8);/* Set a background color */
+/*    color: rgba(25,25,25,1); /* Text color */
+    font-weight: bold;
+    /*padding: 10px; /* Some padding */
+    border-radius: 20px; /* Rounded corners */
+    /*font-size: 16px; /* Increase font size */
+    margin: 10px;
+    /*border-radius: 50%; /* Rounded corners */
+    /*aspect-ratio: 1;*/
+    /*place-items: center;*/
+    display: flex; /*altrimnti non centra le cose! */
+    flex-wrap: wrap; /*fa andare a capo il testo nel flex!
+    align-items: center; /*works only with flex!!!!*/
+    justify-content: center;/*mette il testo al centro del bottone!*/
+    box-shadow: 0 0px 10px gray;
+    /* padding-top: 15px;
+    padding-bottom: 15px; */
+    /* min-width: 40%; */
+    width: 45%;
+  }
+
+.btnSquareProgressFront{/*è il grigio, davanti */
+
+    position: absolute;/*absolute lo mette al centro della progressBar*/
+    display: flex;
+    flex-wrap: wrap; /*fa andare a capo il testo nel flex!*/
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    /*color: #ffd4d4;/*$TxtColor;*/
+    
+    background-image: linear-gradient(180deg, rgba(232,232,232,1) 0%, rgb(110, 113, 116) 100%);
+    clip-path: inset(0 0 0 0%);  /*inset è praticamente un rettangolo dai bordi, e dentro parentesi ho (top right bot left)*/
+    transition: clip-path 10s ease;
+
+    border: 2px solid #ff0000;/*1px*/
+    border-radius: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.btnSquareProgressBack{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    display: flex;
+    flex-wrap: wrap; /*fa andare a capo il testo nel flex!*/
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    /*color: #ffd4d4;*/
+    
+    background-image: 
+        linear-gradient(90deg, rgb(0, 0, 0) 47%, rgb(150, 150, 150) 50%, rgb(0, 0, 0) 51%),
+        linear-gradient(180deg, rgb(255, 163, 163) 0%, rgb(255, 0, 0) 50%, rgb(146, 0, 0) 100%);
+    background-size: 2500% 100%,100% 100%;/*50% è la dimesione RL, 100% è TB*//*usa sempre un sottomultiplo di 100 sennò hai immagini a metà! */
+    background-blend-mode:screen;/*black has no effect, white returns white!*/
+ 
+    animation: slide2 10s linear infinite; 
+    border: 2px solid #ff0000;/*1px*/
+    border-radius: 20px;
+}

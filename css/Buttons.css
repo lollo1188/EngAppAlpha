@@ -1,0 +1,217 @@
+
+.btn{
+  margin-left: auto;
+  margin-right: auto;
+  background: linear-gradient(180deg, rgba(0,0,0,.8) 0%, rgba(255, 74, 225,0.8) 100%); 
+  color: rgba(255,255,255,255);
+  border: none;
+  margin: 10px 10px;
+  padding: 10px;
+  min-height: 60px;
+  min-width: 120px;
+  font-size: 1.25rem;
+  font-weight: bolder;
+  box-shadow: 4px 4px 20px black;
+  /* box-shadow: inset 0 1px 0 rgba(white, .15), 0 1px 1px rgba(black, .075); */
+  border-radius: 1rem; 
+}
+
+@keyframes btnPressed3 {
+  0%{transform: scale(1); opacity: 0.7;}
+  10%{transform: scale(0.7); opacity: 0.4;}
+  40%{transform: scale(1.1); opacity: 1;}
+  100%{transform: scale(1); opacity: 1;}
+}
+  
+
+
+
+
+
+
+
+/*OLD EXAMPLE
+/*.fixedBtn {
+/*  display: none; /* Hidden by default */
+/*  position: fixed; /* Fixed/sticky position */
+/*  bottom: 20px; /* Place the button at the bottom of the page */
+/*  right: 30px; /* Place the button 30px from the right */
+/*  z-index: 99; /* Make sure it does not overlap */
+/*  border: none; /* Remove borders */
+/*  outline: none; /* Remove outline */
+/*  background-color: red; /* Set a background color */
+/*  color: white; /* Text color */
+/*  cursor: pointer; /* Add a mouse pointer on hover */
+/*  padding: 15px; /* Some padding */
+/*  border-radius: 10px; /* Rounded corners */
+/*  font-size: 18px; /* Increase font size */
+/*}
+/*
+/*.fixedBtn:hover {
+/*  background-color: #555; /* Add a dark-grey background on hover */
+/*}
+*/
+
+
+
+.fixedTopBtn {
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 15px; /* Place the button at the bottom of the page */
+  right: 15px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  background-color: rgba(255,255,255,0.8); /* Set a background color */
+  text-align: center;
+}
+
+#BottomBarDiv{
+  user-select: none;
+  position: fixed; /* Fixed/sticky position */
+  bottom: 15px; /* Place the button at the bottom of the page */
+  z-index: 99; /* Make sure it does not overlap */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.btnBottom{/*i 4 bottoni di sooìtto a destra*/
+  user-select: none;
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: rgba(255,255,255,0.8);/* Set a background color */
+  color: rgba(25,25,25,1); /* Text color */
+  padding: 10px; /* Some padding */
+  border-radius: 20px; /* Rounded corners */
+  /*font-size: 16px; /* Increase font size */
+  margin: 2px;
+}
+.btnRound{
+  border-radius: 50%; /* Rounded corners */
+  aspect-ratio: 1;
+  place-items: center;
+  box-shadow: 0 0px 10px gray;
+  padding: 15px;
+}
+.btnRound2{
+  border-radius: 30%; /* Rounded corners */
+  aspect-ratio: 1;
+  place-items: center;
+  box-shadow: 0 4px 10px gray;
+  padding: 15px;
+}
+
+.movedLeft{
+  transform: scale(0.9) translateX(-20px); 
+  opacity: 0.8;
+}
+
+
+
+@keyframes btnRotate180cw {
+  0%{transform: rotate(0deg)/*scale(0.9) translateX(-20px); opacity: 0.8;*/}
+  100%{transform: rotate(180deg)/*scale(1) translateX(0px); opacity: 1;*/}
+  /* 
+  10%{transform: scale(0.7); opacity: 0.4;}
+  40%{transform: scale(1.1); opacity: 1;}
+  100%{transform: scale(1); opacity: 1;} */
+}
+
+@keyframes btnRotate180acw {
+  0%{transform: rotate(180deg)/*scale(0.9) translateX(-20px); opacity: 0.8;*/}
+  100%{transform: rotate(360deg)/*scale(1) translateX(0px); opacity: 1;*/} 
+}
+
+
+
+/*New STUFF*/
+
+#divHeader{
+  user-select: none;
+/*  position: fixed; /* Fixed/sticky position */
+/*  top: 15px; /* Place the button at the bottom of the page */
+/*  z-index: 99; /* Make sure it does not overlap */
+/*  display: flex; */
+  align-items: center;
+  justify-content: center;
+}
+
+
+.btnTop{/*i 4 bottoni di sooìtto a destra*/
+  user-select: none;
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: rgba(255,255,255,0.8);/* Set a background color */
+  backdrop-filter: blur(20px);
+  color: rgba(25,25,25,1); /* Text color */
+  /*padding: 10px; /* Some padding */
+  /*border-radius: 20px; /* Rounded corners */
+  /*font-size: 16px; /* Increase font size */
+  margin: 2px;
+  border-radius: 50%; /* Rounded corners */
+  aspect-ratio: 1;
+  place-items: center;
+  box-shadow: 0 0px 10px gray;
+  padding: 15px;
+}
+
+.font-weight-bold{
+  font-weight: bold;
+}
+
+.btnSquare{
+  user-select: none;
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: rgba(255,255,255,0.8);/* Set a background color */
+  color: rgba(25,25,25,1); /* Text color */
+  font-weight: bold;
+  /*padding: 10px; /* Some padding */
+  border-radius: 20px; /* Rounded corners */
+  /*font-size: 16px; /* Increase font size */
+  margin: 10px;
+  /*border-radius: 50%; /* Rounded corners */
+  /*aspect-ratio: 1;*/
+  /*place-items: center;*/
+  display: flex; /*altrimnti non centra le cose! */
+  flex-wrap: wrap; /*fa andare a capo il testo nel flex!
+  align-items: center; /*works only with flex!!!!*/
+  justify-content: center;/*mette il testo al centro del bottone!*/
+  box-shadow: 0 0px 10px gray;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  /* min-width: 40%; */
+  width: 45%;
+}
+
+.bgr{background-color: rgb(255, 0, 0);}
+.bgb{background-color: rgb(0, 0, 255);}
+.bgg{background-color: rgb(0, 255, 0);}
+.bgy{background-color: rgb(255, 255, 0);}
+.bgp{background-color: rgb(255, 0, 255);}
+.bgt{background-color: rgb(0, 255, 255);}
+
+
+/**non ha una min-width!!!! */
+.btnSquare2{/*che cambia rispetto al btnSquare???*/
+  user-select: none;
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: rgba(255,255,255,0.8);/* Set a background color */
+  color: rgba(25,25,25,1); /* Text color */
+  /*padding: 10px; /* Some padding */
+  border-radius: 20px; /* Rounded corners */
+  /*font-size: 16px; /* Increase font size */
+  margin: 10px;
+  /*border-radius: 50%; /* Rounded corners */
+  /*aspect-ratio: 1;*/
+  /*place-items: center;*/
+  display: flex; /*altrimnti non centra le cose! */
+  /*flex-wrap: wrap; /*fa andare a capo il testo nel flex!*/
+  /* flex-flow: row wrap; */
+  align-items: center; /*works only with flex!!!!*/
+  justify-content: center;/*mette il testo al centro del bottone!*/
+  box-shadow: 0 0px 10px gray;
+  padding: 15px;
+  /*width: 45%;*/
+}

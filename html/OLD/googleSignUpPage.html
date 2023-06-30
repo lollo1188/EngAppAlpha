@@ -1,0 +1,117 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Google Sign-In Example</title>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+  <h1>Google Sign-In Example</h1>
+
+  <div id="g_id_onload"
+       data-client_id="329599416834-lr1th4i6nodmmgmnborl562iv7mn2lmi.apps.googleusercontent.com"
+       data-callback="handleCredentialResponse">
+  </div>
+
+  <div id="google-signin-button"></div>
+
+
+<script>
+    var EngAppUrlAppsScript = "https://script.google.com/macros/s/AKfycbzzziNMoD8DCqcmXgxTq8KbQdQM1x4_y7D4YhLkaFt_EuK68SB8ylNjKgKcKfPk3Rtz/exec"
+    var ClientID = "329599416834-lr1th4i6nodmmgmnborl562iv7mn2lmi.apps.googleusercontent.com";
+
+  function handleCredentialResponse(response) {
+      // Send the ID token to the server for verification
+      var idToken = response.credential;
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", EngAppUrlAppsScript, true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          // Request was successful
+          console.log(xhr.responseText);
+        } else {
+          // Request failed
+          console.error(xhr.responseText);
+        }
+      }
+    };
+    xhr.send("id_token=" + idToken);
+  }
+
+  function initGoogleSignIn() {
+    gapi.load('auth2', function() {
+      gapi.auth2.init({
+        client_id: ClientID
+      }).then(function(auth2) {
+        gapi.signin2.render('google-signin-button', {
+          'scope': 'profile email',
+          'width': 200,
+          'height': 40,
+          'longtitle': true,
+          'theme': 'light',
+          'onsuccess': handleCredentialResponse
+        });
+      });
+    });
+  }
+
+
+
+
+
+  </script>
+
+<script src="https://apis.google.com/js/platform.js?onload=initGoogleSignIn" async defer></script>
+
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Google Sign-In Example</title>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+  <h1>Google Sign-In Example</h1>
+
+  <button onclick="handleGoogleSignIn()">Sign in with Google</button>
+
+  <script>
+    var EngAppUrlAppsScript = "https://script.google.com/macros/s/AKfycbzzziNMoD8DCqcmXgxTq8KbQdQM1x4_y7D4YhLkaFt_EuK68SB8ylNjKgKcKfPk3Rtz/exec"
+    var ClientID = "329599416834-lr1th4i6nodmmgmnborl562iv7mn2lmi.apps.googleusercontent.com";
+
+    function handleCredentialResponse(response) {
+      // Send the ID token to the server for verification
+      var idToken = response.credential;
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", EngAppUrlAppsScript, true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            // Request was successful
+            console.log(xhr.responseText);
+          } else {
+            // Request failed
+            console.error(xhr.responseText);
+          }
+        }
+      };
+      xhr.send("id_token=" + idToken);
+    }
+
+    function handleGoogleSignIn() {
+      google.accounts.id.initialize({
+        client_id: ClientID,
+        callback: handleCredentialResponse,
+      });
+      google.accounts.id.prompt();
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,409 @@
+// // Disable animation if transitions are disabled
+
+// //scss-docs-start progress-variables
+// $progress-height:                   1rem !default;
+// $progress-font-size:                $font-size-base * .8 !default;
+// $progress-bg:                       $gray-400;
+// $progress-border-radius:            $border-radius * 2;
+// $progress-box-shadow:               $box-shadow-inset !default;
+// $progress-bar-color:                $black;
+// $progress-bar-bg:                   $blueN;
+// $progress-bar-animation-timing:     1s linear infinite;
+// $progress-bar-transition:           width 10s ease;
+// // scss-docs-end progress-variables
+// // progress-bar progress-bar-striped progress-bar-animated bg-blueN
+
+
+// // scss-docs-start progress-keyframes
+// @if $enable-transitions {
+//   @keyframes progress-bar-stripes {
+//     0% { background-position-x: $progress-height; 
+//         opacity: 1;
+//     }
+//     50% {opacity: .7;}
+//     100% {opacity: 1;}
+//   }
+// }
+// // scss-docs-end progress-keyframes
+
+// .progress {
+//   display: flex;
+//   height: $progress-height;
+//   overflow: hidden; // force rounded corners by cropping it
+//   @include font-size($progress-font-size);
+//   background-color: $progress-bg;
+//   @include border-radius($progress-border-radius);
+//   @include box-shadow($progress-box-shadow);
+// }
+
+// .progress-bar {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   overflow: hidden;
+//   color: $progress-bar-color;
+//   text-align: center;
+//   white-space: nowrap;
+//   background-color: $progress-bar-bg;
+//   @include transition($progress-bar-transition);
+// }
+
+// .progress-bar-striped {
+//   @include gradient-striped();
+//   background-size: $progress-height $progress-height;
+// }
+
+// @if $enable-transitions {
+//   .progress-bar-animated {
+//     animation: $progress-bar-animation-timing progress-bar-stripes;
+
+//     @if $enable-reduced-motion {
+//       @media (prefers-reduced-motion: reduce) {
+//         animation: none;
+//       }
+//     }
+//   }
+// }
+
+
+
+
+
+
+
+
+// .back { /*vale per tutta la barra!*/
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   width: 100%;
+//   color: white;
+// }
+// .front { /*è il front, davanti, ma visivamente è quello non riempito!*/
+//   position: absolute;/*absolute lo mette al centro della progressBar*/
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   left: 0;
+//   right: 0;
+//   top: 0;
+//   bottom: 0;
+  
+//   background-image: linear-gradient(180deg, rgba(232,232,232,1) 0%, rgb(161, 168, 175) 100%);
+//   clip-path: inset(0 0 0 50%);  /*inset è praticamente un rettangolo dai bordi, e dentro parentesi ho (top right bot left)*/
+//   transition: clip-path 1s ease;
+// }
+
+
+
+
+// .ProgressBackyellowNold{
+//   $color:$yellowN; 
+//   background-image:linear-gradient(180deg, rgba(232,232,232) 0%, $color 80%),
+//                    linear-gradient(90deg, $color 20%, rgb(255, 255, 255, 1) 22%, $color 24%);
+//   animation-duration:3s
+// }
+
+
+// .innerAnimation2 {/*è quella che si muove*/
+
+//   animation: slide2 3.4s linear infinite; 
+//   background-size: 100% 100%,1000% 100%;/*50% è la dimesione RL, 100% è TB*//*usa sempre un sottomultiplo di 100 sennò hai immagini a metà! */
+//   background-blend-mode:multiply;
+
+  
+// }
+
+
+
+/* ORIGINAL!!
+@mixin ProgressBarBackAnimation($BgColor,$TxtColor,$AnimDuration){
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  color: $TxtColor;
+  
+  background-image:linear-gradient(180deg, rgb(255, 255, 255) 0%, rgba($BgColor,0.5) 70%, rgba($black,0.5) 100%),
+                   linear-gradient(90deg, rgba($BgColor,0.8) 20%, rgb(255, 255, 255, 1) 22%, rgba($BgColor,0.8) 24%);
+                   background-size: 100% 100%,1000% 100%;/*50% è la dimesione RL, 100% è TB*//*usa sempre un sottomultiplo di 100 sennò hai immagini a metà! */
+/*  background-blend-mode:multiply;
+  
+  color: $TxtColor;
+  
+  //no variables neded here:
+  animation: slide2 $AnimDuration linear infinite; 
+}
+@mixin ProgressBarFrontAnimation($BgColor,$TxtColor,$ClipPathDuration){
+  position: absolute;/*absolute lo mette al centro della progressBar*/
+  /*  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  color: $TxtColor;
+  
+  background-image: linear-gradient(180deg, rgba(232,232,232,1) 0%, $BgColor 100%);
+  clip-path: inset(0 0 0 0%);  /*inset è praticamente un rettangolo dai bordi, e dentro parentesi ho (top right bot left)*/
+  /*  transition: clip-path $ClipPathDuration ease;
+}
+*/
+@keyframes slide1 {from {background-position: 0% 0%; } to {background-position: 100% 0%; }}
+@keyframes slide2 {from {background-position: 100% 0%; } to {background-position: 0% 0%; }}
+
+@mixin ProgressBarBackAnimation($BgColor,$TxtColor,$AnimDuration,$BdColor){
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  color: color.scale($BdColor, $lightness: 70%);//$TxtColor;
+  
+  background-image:
+  linear-gradient(90deg, rgb(0, 0, 0) 47%, rgb(150, 150, 150) 50%, rgb(0, 0, 0) 51%),
+  linear-gradient(180deg, color.scale($BgColor, $lightness: 80%) 0%, $BgColor 40%, color.scale($BgColor, $lightness: -40%) 100%),
+  ;
+  background-size: 2500% 100%,100% 100%;/*50% è la dimesione RL, 100% è TB*//*usa sempre un sottomultiplo di 100 sennò hai immagini a metà! */
+  background-blend-mode:screen;//black has no effect, white returns white!
+
+  animation: slide2 $AnimDuration*4 linear infinite; 
+
+  border: 2px solid color.scale($BdColor, $lightness: -40%);/*1px*/
+  border-radius: 8px;
+}
+
+@mixin ProgressBarFrontAnimation($BgColor,$TxtColor,$ClipPathDuration,$BdColor){//è il grigio, davanti
+  position: absolute;/*absolute lo mette al centro della progressBar*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  color: color.scale($BdColor, $lightness: -40%);
+  
+
+  background-image: linear-gradient(180deg, rgba(232,232,232,1) 0%, $BgColor 100%);
+  clip-path: inset(0 0 0 0%);  /*inset è praticamente un rettangolo dai bordi, e dentro parentesi ho (top right bot left)*/
+  transition: clip-path $ClipPathDuration*2 ease;
+  
+  // border-color: $BgColor;
+  border: 2px solid color.scale($BdColor, $lightness: -40%);/*1px*/
+  border-radius: 8px;
+}
+
+.ProgressNik { /*comuni ad entrambi, back and front!!*/
+  position: relative;
+  display: flex;
+  height: 25px;
+  // border: 2px solid;/*1px*/
+  // border-color: blue;
+  // border: none;/*0px solid #566573;/*1px*/
+  // border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: Courier, monospace;
+  overflow: hidden;/*croppa tutto quello che esce!*/
+  margin: 4px;
+  // @include BorderColor($blueN);
+  
+}
+
+// scss-docs-start gray-color-variables 1
+$white:    #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black:    #000 !default;
+// scss-docs-end gray-color-variables 1
+
+// fusv-disable
+// scss-docs-start gray-colors-map 2
+$grays: (
+  "100": $gray-100,
+  "200": $gray-200,
+  "300": $gray-300,
+  "400": $gray-400,
+  "500": $gray-500,
+  "600": $gray-600,
+  "700": $gray-700,
+  "800": $gray-800,
+  "900": $gray-900
+) !default;
+// scss-docs-end gray-colors-map 2
+// fusv-enable
+
+
+
+
+
+
+// scss-docs-start color-variables 3
+$blue:    #0d6efd !default;
+$indigo:  #6610f2 !default;
+$purple:  #6f42c1 !default;
+$pink:    #d63384 !default;
+$red:     #dc3545 !default;
+$orange:  #fd7e14 !default;
+$yellow:  #ffc107 !default;
+$green:   #198754 !default;
+$teal:    #20c997 !default;
+$cyan:    #0dcaf0 !default;
+
+$blueN:    #0d6efd;
+$indigoN:  #6610f2;
+$purpleN:  #6f42c1;
+$pinkN:    #ff2a94;
+$redN:     #ff0000;
+$orangeN:  #ff6600;
+$yellowN:  #fffb00;
+$greenN:   #00df77;
+$lightgreenN:#00fc37;
+$tealN:    #00ffb3;
+$tealNp:    #00ffb3;//da cambiare e rinominare se vuoi!
+$fuxiaN:    #d400ff;
+$cyanN:    #00a2ff;
+
+
+// $grayN: rgb(161, 168, 175); 
+$grayN: rgb(110, 113, 116); 
+.ProgressBackblueN{@include ProgressBarBackAnimation ($blueN,$white,3.2s,$blueN);}
+.ProgressFrontblueN{@include ProgressBarFrontAnimation($grayN,$blueN,5s,$blueN);}
+
+.ProgressBackindigoN{@include ProgressBarBackAnimation ($indigoN,$white,4.2s,$indigoN);}
+.ProgressFrontindigoN{@include ProgressBarFrontAnimation($grayN,$indigoN,7s,$indigoN); }
+
+.ProgressBackpurpleN{@include ProgressBarBackAnimation ($purpleN,$white,3.1s ,$purpleN);  }
+.ProgressFrontpurpleN{@include ProgressBarFrontAnimation($grayN,$purpleN,4.2s ,$purpleN);  }
+
+.ProgressBackpinkN{@include ProgressBarBackAnimation ($pinkN,$black,3s ,$pinkN);  }
+.ProgressFrontpinkN{@include ProgressBarFrontAnimation($grayN,$pinkN,6s ,$pinkN);  }
+
+.ProgressBackredN{@include ProgressBarBackAnimation ($redN,$white,4.4s ,$redN);  }
+.ProgressFrontredN{@include ProgressBarFrontAnimation($grayN,$redN,3s ,$redN);  }
+
+.ProgressBackorangeN{@include ProgressBarBackAnimation ($orangeN,$black,4s ,$orangeN);  }
+.ProgressFrontorangeN{@include ProgressBarFrontAnimation($grayN,$orangeN,5s ,$orangeN);  }
+
+.ProgressBackyellowN{@include ProgressBarBackAnimation ($yellowN,$black,3.4s ,$yellowN);  }
+.ProgressFrontyellowN{@include ProgressBarFrontAnimation($grayN,$yellowN,4s ,$yellowN);  }
+
+.ProgressBackgreenN{@include ProgressBarBackAnimation ($greenN,$black,3.7s ,$greenN);  }
+.ProgressFrontgreenN{@include ProgressBarFrontAnimation($grayN,$lightgreenN,6s ,$greenN);  }
+
+.ProgressBacklightgreenN{@include ProgressBarBackAnimation ($lightgreenN,$black,3.4s ,$lightgreenN);  }
+.ProgressFrontlightgreenN{@include ProgressBarFrontAnimation($grayN,$greenN,4s ,$lightgreenN);  }
+
+.ProgressBacktealN{@include ProgressBarBackAnimation ($tealN,$black,3.5s ,$tealN);  }
+.ProgressFronttealN{@include ProgressBarFrontAnimation($grayN,$blueN,2s ,$tealN);  }
+
+.ProgressBackfuxiaN{@include ProgressBarBackAnimation ($fuxiaN,$black,3.3s ,$fuxiaN);  }
+.ProgressFrontfuxiaN{@include ProgressBarFrontAnimation($grayN,$fuxiaN,4.4s ,$fuxiaN);  }
+
+.ProgressBackcyanN{@include ProgressBarBackAnimation ($cyanN,$black,3.1s ,$cyanN);  }
+.ProgressFrontcyanN{@include ProgressBarFrontAnimation($grayN,$tealN,4.4s ,$cyanN);  }
+
+
+
+@mixin ProgressBtnBackAnimation($BgColor,$TxtColor,$AnimDuration,$BdColor){
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  color: color.scale($BdColor, $lightness: 70%);//$TxtColor;
+  
+  background-image:
+  linear-gradient(90deg, rgb(0, 0, 0) 47%, rgb(150, 150, 150) 50%, rgb(0, 0, 0) 51%),
+  linear-gradient(180deg, color.scale($BgColor, $lightness: 80%) 0%, $BgColor 40%, color.scale($BgColor, $lightness: -40%) 100%),
+  ;
+  background-size: 2500% 100%,100% 100%;/*50% è la dimesione RL, 100% è TB*//*usa sempre un sottomultiplo di 100 sennò hai immagini a metà! */
+  background-blend-mode:screen;//black has no effect, white returns white!
+
+  animation: slide2 $AnimDuration*4 linear infinite; 
+
+  border: 2px solid color.scale($BdColor, $lightness: -40%);/*1px*/
+  border-radius: 8px;
+}
+
+@mixin ProgressBtnFrontAnimation($BgColor,$TxtColor,$ClipPathDuration,$BdColor){//è il grigio, davanti
+  position: absolute;/*absolute lo mette al centro della progressBar*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  color: color.scale($BdColor, $lightness: -40%);
+  
+
+  background-image: linear-gradient(180deg, rgba(232,232,232,1) 0%, $BgColor 100%);
+  clip-path: inset(0 0 0 0%);  /*inset è praticamente un rettangolo dai bordi, e dentro parentesi ho (top right bot left)*/
+  transition: clip-path $ClipPathDuration*2 ease;
+  
+  // border-color: $BgColor;
+  border: 2px solid color.scale($BdColor, $lightness: -40%);/*1px*/
+  border-radius: 8px;
+}
+
+.ProgressBtn { /*comuni ad entrambi, back and front!!*/
+  position: relative;
+  display: flex;
+  height: 25px;
+  // border: 2px solid;/*1px*/
+  // border-color: blue;
+  // border: none;/*0px solid #566573;/*1px*/
+  // border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: Courier, monospace;
+  overflow: hidden;/*croppa tutto quello che esce!*/
+  margin: 4px;
+  // @include BorderColor($blueN);
+  
+}
+
+
+.ProgressBtnBackblueN{@include ProgressBtnBarBackAnimation ($blueN,$white,3.2s,$blueN);}
+.ProgressBtnFrontblueN{@include ProgressBtnBarFrontAnimation($grayN,$blueN,5s,$blueN);}
+
+.ProgressBtnBackindigoN{@include ProgressBtnBarBackAnimation ($indigoN,$white,4.2s,$indigoN);}
+.ProgressBtnFrontindigoN{@include ProgressBtnBarFrontAnimation($grayN,$indigoN,7s,$indigoN); }
+
+.ProgressBtnBackpurpleN{@include ProgressBtnBarBackAnimation ($purpleN,$white,3.1s ,$purpleN);  }
+.ProgressBtnFrontpurpleN{@include ProgressBtnBarFrontAnimation($grayN,$purpleN,4.2s ,$purpleN);  }
+
+.ProgressBtnBackpinkN{@include ProgressBtnBarBackAnimation ($pinkN,$black,3s ,$pinkN);  }
+.ProgressBtnFrontpinkN{@include ProgressBtnBarFrontAnimation($grayN,$pinkN,6s ,$pinkN);  }
+
+.ProgressBtnBackredN{@include ProgressBtnBarBackAnimation ($redN,$white,4.4s ,$redN);  }
+.ProgressBtnFrontredN{@include ProgressBtnBarFrontAnimation($grayN,$redN,3s ,$redN);  }
+
+.ProgressBtnBackorangeN{@include ProgressBtnBarBackAnimation ($orangeN,$black,4s ,$orangeN);  }
+.ProgressBtnFrontorangeN{@include ProgressBtnBarFrontAnimation($grayN,$orangeN,5s ,$orangeN);  }
+
+.ProgressBtnBackyellowN{@include ProgressBtnBarBackAnimation ($yellowN,$black,3.4s ,$yellowN);  }
+.ProgressBtnFrontyellowN{@include ProgressBtnBarFrontAnimation($grayN,$yellowN,4s ,$yellowN);  }
+
+.ProgressBtnBackgreenN{@include ProgressBtnBarBackAnimation ($greenN,$black,3.7s ,$greenN);  }
+.ProgressBtnFrontgreenN{@include ProgressBtnBarFrontAnimation($grayN,$lightgreenN,6s ,$greenN);  }
+
+.ProgressBtnBacklightgreenN{@include ProgressBtnBarBackAnimation ($lightgreenN,$black,3.4s ,$lightgreenN);  }
+.ProgressBtnFrontlightgreenN{@include ProgressBtnBarFrontAnimation($grayN,$greenN,4s ,$lightgreenN);  }
+
+.ProgressBtnBacktealN{@include ProgressBtnBarBackAnimation ($tealN,$black,3.5s ,$tealN);  }
+.ProgressBtnFronttealN{@include ProgressBtnBarFrontAnimation($grayN,$blueN,2s ,$tealN);  }
+
+.ProgressBtnBackfuxiaN{@include ProgressBtnBarBackAnimation ($fuxiaN,$black,3.3s ,$fuxiaN);  }
+.ProgressBtnFrontfuxiaN{@include ProgressBtnBarFrontAnimation($grayN,$fuxiaN,4.4s ,$fuxiaN);  }
+
+.ProgressBtnBackcyanN{@include ProgressBtnBarBackAnimation ($cyanN,$black,3.1s ,$cyanN);  }
+.ProgressBtnFrontcyanN{@include ProgressBtnBarFrontAnimation($grayN,$tealN,4.4s ,$cyanN);  }

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+  <style>
+    /* CSS styles for the login page */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 300px;
+      margin: 150px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+
+      <label for="remember">Remember me:</label>
+      <input type="checkbox" id="remember" name="remember">
+
+      <button type="button" onclick="login()">Sign In</button>
+    </form>
+  </div>
+
+  <script>
+    function login() {
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+      var remember = document.getElementById('remember').checked;
+
+      // Here, you can perform validation and further processing of the login credentials
+      // For this example, let's simply log the values to the console
+      console.log('Username:', username);
+      console.log('Password:', password);
+      console.log('Remember me:', remember);
+
+      // You can add your own logic to handle the login process, such as sending an AJAX request to the server
+      // and verifying the credentials. This example focuses on capturing the form values.
+
+      // Reset the form fields
+      document.getElementById('loginForm').reset();
+    }
+  </script>
+</body>
+</html>

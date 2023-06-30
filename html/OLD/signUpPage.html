@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SignUpPage</title>
+  <!-- è lo zoom per lo smartphone -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <style>
+    /* CSS styles for the signup page */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 400px;
+      margin: 50px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      border-radius: 4px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      border-radius: 4px;
+    }
+
+    .password-rules {
+      margin-top: 10px;
+      font-size: 12px;
+    }
+
+    .satisfied {
+      color: green;
+    }
+
+    .unsatisfied {
+      color: red;
+    }
+
+    .rule-icon {
+      margin-right: 5px;
+    }
+
+    .password-toggle {
+      position: relative;
+      display: inline-block;
+    }
+
+    .password-toggle .toggle-icon {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>SignUpPage</h2>
+    <form id="signupForm">
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+
+      <label for="surname">Surname:</label>
+      <input type="text" id="surname" name="surname" placeholder="Surname" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Email" required>
+
+      <label for="password">Password:</label>
+      <div class="password-toggle">
+        <input type="password" id="password" name="password" placeholder="Password" required>
+        <span class="toggle-icon" onclick="togglePasswordVisibility('password')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 4c-4.35 0-7.902 3.551-7.902 7.902 0 4.35 3.552 7.901 7.902 7.901 4.349 0 7.9-3.552 7.9-7.901C19.9 7.551 16.349 4 12 4zm0 13.152c-2.646 0-4.794-2.148-4.794-4.795S9.354 7.561 12 7.561c2.647 0 4.795 2.149 4.795 4.796 0 2.646-2.148 4.795-4.795 4.795zm0-8.592c-1.662 0-3.01 1.348-3.01 3.01s1.348 3.01 3.01 3.01c1.661 0 3.01-1.348 3.01-3.01s-1.348-3.01-3.01-3.01zm0 4.088c-.643 0-1.166-.524-1.166-1.166s.523-1.166 1.166-1.166 1.166.524 1.166 1.166-.523 1.166-1.166 1.166z"/>
+          </svg>
+        </span>
+      </div>
+      <div class="password-rules">
+        Password should contain:
+        <ul>
+          <li id="lengthRule"><span class="rule-icon">✓</span>At least 8 characters</li>
+          <li id="uppercaseRule"><span class="rule-icon">✓</span>At least one uppercase letter</li>
+          <li id="lowercaseRule"><span class="rule-icon">✓</span>At least one lowercase letter</li>
+          <li id="digitRule"><span class="rule-icon">✓</span>At least one digit</li>
+          <li id="specialCharRule"><span class="rule-icon">✓</span>At least one special character (!@#$%^&*)</li>
+        </ul>
+      </div>
+
+      <label for="repeatPassword">Repeat Password:</label>
+      <div class="password-toggle">
+        <input type="password" id="repeatPassword" name="repeatPassword" placeholder="Repeat Password" required>
+        <span class="toggle-icon" onclick="togglePasswordVisibility('repeatPassword')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 4c-4.35 0-7.902 3.551-7.902 7.902 0 4.35 3.552 7.901 7.902 7.901 4.349 0 7.9-3.552 7.9-7.901C19.9 7.551 16.349 4 12 4zm0 13.152c-2.646 0-4.794-2.148-4.794-4.795S9.354 7.561 12 7.561c2.647 0 4.795 2.149 4.795 4.796 0 2.646-2.148 4.795-4.795 4.795zm0-8.592c-1.662 0-3.01 1.348-3.01 3.01s1.348 3.01 3.01 3.01c1.661 0 3.01-1.348 3.01-3.01s-1.348-3.01-3.01-3.01zm0 4.088c-.643 0-1.166-.524-1.166-1.166s.523-1.166 1.166-1.166 1.166.524 1.166 1.166-.523 1.166-1.166 1.166z"/>
+          </svg>
+        </span>
+      </div>
+
+      <button type="button" onclick="signup()">Sign Up</button>
+    </form>
+  </div>
+
+  <script>
+    var passwordInput = document.getElementById('password');
+    var repeatPasswordInput = document.getElementById('repeatPassword');
+    var lengthRule = document.getElementById('lengthRule');
+    var uppercaseRule = document.getElementById('uppercaseRule');
+    var lowercaseRule = document.getElementById('lowercaseRule');
+    var digitRule = document.getElementById('digitRule');
+    var specialCharRule = document.getElementById('specialCharRule');
+
+    passwordInput.addEventListener('input', function () {
+      var password = passwordInput.value;
+
+      lengthRule.classList.toggle('satisfied', password.length >= 8);
+      uppercaseRule.classList.toggle('satisfied', /[A-Z]/.test(password));
+      lowercaseRule.classList.toggle('satisfied', /[a-z]/.test(password));
+      digitRule.classList.toggle('satisfied', /\d/.test(password));
+      specialCharRule.classList.toggle('satisfied', /[!@#$%^&*]/.test(password));
+      specialCharRule.classList.toggle('unsatisfied', !/[!@#$%^&*]/.test(password));
+    });
+
+    repeatPasswordInput.addEventListener('input', function () {
+      var password = passwordInput.value;
+      var repeatPassword = repeatPasswordInput.value;
+
+      if (repeatPassword !== password) {
+        repeatPasswordInput.setCustomValidity('Passwords must match');
+      } else {
+        repeatPasswordInput.setCustomValidity('');
+      }
+    });
+
+    function togglePasswordVisibility(inputId) {
+      var input = document.getElementById(inputId);
+      var icon = input.nextElementSibling.querySelector('.toggle-icon');
+
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12H4a2 2 0 0 0-2 2v3c0 .35.1.68.29.97L5.66 21.3a1 1 0 0 0 1.42 0l2.37-2.37A9 9 0 1 0 6 12zm3-2h6"/><path d="M15 9a3 3 0 0 1 3 3v1M6 9a3 3 0 0 0-3 3v1"></path></svg>';
+      } else {
+        input.type = 'password';
+        icon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4c-4.35 0-7.902 3.551-7.902 7.902 0 4.35 3.552 7.901 7.902 7.901 4.349 0 7.9-3.552 7.9-7.901C19.9 7.551 16.349 4 12 4zm0 13.152c-2.646 0-4.794-2.148-4.794-4.795S9.354 7.561 12 7.561c2.647 0 4.795 2.149 4.795 4.796 0 2.646-2.148 4.795-4.795 4.795zm0-8.592c-1.662 0-3.01 1.348-3.01 3.01s1.348 3.01 3.01 3.01c1.661 0 3.01-1.348 3.01-3.01s-1.348-3.01-3.01-3.01zm0 4.088c-.643 0-1.166-.524-1.166-1.166s.523-1.166 1.166-1.166 1.166.524 1.166 1.166-.523 1.166-1.166 1.166z"/></svg>';
+      }
+    }
+
+    function signup() {
+      var firstName = document.getElementById('firstName').value;
+      var surname = document.getElementById('surname').value;
+      var email = document.getElementById('email').value;
+      var password = document.getElementById('password').value;
+      var repeatPassword = document.getElementById('repeatPassword').value;
+
+      if (password !== repeatPassword) {
+        alert('Password and repeat password do not match');
+        return;
+      }
+
+      // Password validation
+      var passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
+      if (!passwordRegex.test(password)) {
+        alert('Invalid password. Please ensure your password meets the requirements.');
+        return;
+      }
+
+      // Perform signup logic here
+      // ...
+
+      alert('Signup successful!');
+    }
+  </script>
+</body>
+</html>

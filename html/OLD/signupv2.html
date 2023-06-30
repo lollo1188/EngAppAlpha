@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SignUp</title>
+
+  <!-- è lo zoom per lo smartphone -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 20px;
+    }
+    
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 10px;
+      color: #333;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    
+    p.criteria {
+      margin: 5px 0 20px;
+      font-size: 12px;
+    }
+    
+    .criteria {
+      color: red;
+    }
+    
+    .met {
+      color: green;
+    }
+    
+    button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    
+    button[type="submit"] {
+      background-color: #4CAF50;
+    }
+    
+    button[type="button"] {
+      background-color: #ccc;
+    }
+  </style>
+  <script>
+    function checkPassword() {
+      var password = document.getElementById('password');
+      var criteria = document.getElementById('criteria');
+      
+      var lengthRegex = /.{8,}/;
+      var digitRegex = /\d/;
+      var lowercaseRegex = /[a-z]/;
+      var uppercaseRegex = /[A-Z]/;
+      var specialCharRegex = /[!@#$%^&*()\-=_+[\]{};':"\\|,.<>/?]+/;
+      
+      var criteriaMet = [];
+      
+      if (lengthRegex.test(password.value)) {
+        criteriaMet.push('<span class="met">✓ Length (at least 8 characters)</span>');
+      } else {
+        criteriaMet.push('<span class="criteria">× Length (at least 8 characters)</span>');
+      }
+      
+      if (digitRegex.test(password.value)) {
+        criteriaMet.push('<span class="met">✓ Digit</span>');
+      } else {
+        criteriaMet.push('<span class="criteria">× Digit</span>');
+      }
+      
+      if (lowercaseRegex.test(password.value)) {
+        criteriaMet.push('<span class="met">✓ Lowercase letter</span>');
+      } else {
+        criteriaMet.push('<span class="criteria">× Lowercase letter</span>');
+      }
+      
+      if (uppercaseRegex.test(password.value)) {
+        criteriaMet.push('<span class="met">✓ Uppercase letter</span>');
+      } else {
+        criteriaMet.push('<span class="criteria">× Uppercase letter</span>');
+      }
+      
+      if (specialCharRegex.test(password.value)) {
+        criteriaMet.push('<span class="met">✓ Special character</span>');
+      } else {
+        criteriaMet.push('<span class="criteria">× Special character</span>');
+      }
+      
+      criteria.innerHTML = criteriaMet.join('<br>');
+      
+      var criteriaElements = criteria.getElementsByTagName('span');
+      var allCriteriaMet = true;
+      
+      for (var i = 0; i < criteriaElements.length; i++) {
+        if (criteriaElements[i].classList.contains('criteria')) {
+          allCriteriaMet = false;
+          break;
+        }
+      }
+      
+      if (allCriteriaMet) {
+        criteria.classList.add('met');
+        password.style.borderColor = 'green';
+      } else {
+        criteria.classList.remove('met');
+        password.style.borderColor = 'red';
+      }
+    }
+    
+  </script>
+</head>
+<body>
+  <h1>Signupv2</h1>
+  <form>
+    <div>
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" name="firstName" required placeholder="Enter your first name">
+    </div>
+    <div>
+      <label for="surname">Surname:</label>
+      <input type="text" id="surname" name="surname" required placeholder="Enter your surname">
+    </div>
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required placeholder="Enter your email address">
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required placeholder="Enter your password" oninput="checkPassword()">
+      <p id="criteria" class="criteria"></p>
+    </div>
+    <div>
+      <label for="confirmPassword">Confirm Password:</label>
+      <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirm your password">
+    </div>
+    <div>
+      <button type="submit">Sign Up</button>
+      <button type="button">I already have an account</button>
+    </div>
+  </form>
+</body>
+</html>

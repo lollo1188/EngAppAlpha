@@ -1,0 +1,45 @@
+/* Custom background color */
+.bkg-red{background-color: rgb(255, 0, 0);}
+.bkg-blue{background-color: rgb(0, 0, 255);}
+.bkg-green{background-color: rgb(0, 255, 0);}
+.bkg-yellow{background-color: rgb(255, 255, 0);}
+.bkg-pink{background-color: rgb(255, 0, 255);}
+.bkg-teal{background-color: rgb(0, 255, 255);}
+.bkg-white{background-color: rgb(255, 255, 255);}
+.bkg-black{background-color: rgb(0, 0, 0);}
+.bkg-lightgrey{background-color: #f1f1f1;}
+
+/* Custom text color */
+.txt-red{color: rgb(255, 0, 0);}
+.txt-blue{color: rgb(0, 0, 255);}
+.txt-green{color: rgb(0, 255, 0);}
+.txt-yellow{color: rgb(255, 255, 0);}
+.txt-pink{color: rgb(255, 0, 255);}
+.txt-teal{color: rgb(0, 255, 255);}
+.txt-white{color: rgb(255, 255, 255);}
+.txt-black{color: rgb(0, 0, 0);}
+.txt-lightgrey{color: #f1f1f1;}
+
+
+.txt-bold {font-weight: bold;}
+.txt-italic {font-weight: italic;}
+
+.txt-18{font-size: 18px;}
+.txt-20{font-size: 20px;}
+.txt-24{font-size: 24px;}
+.txt-28{font-size: 28px;}
+
+.txt-center{text-align: center;} /*basta aggiungere la classe "d-flex justify-content-center" */
+
+/* per l'occio della password e la sua visibilità */
+  .password-container {
+    position: relative;
+  }
+  .toggle-password {
+    position: absolute;
+    top: 57%;
+    right: 13px;
+    /* transform: translateY(-50%);  */
+    cursor: pointer;
+  }
+

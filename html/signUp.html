@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- è lo zoom per lo smartphone -->
+  
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, initial-scale=0.85, maximum-scale=0.85"> 
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> --> 
+    <!-- user-scalable è usao per modificre lo zoom, ma non serve se aggiusto la scala con initial-scale e maximum-scale -->
+
+    <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- mi da l'occhio per la password, e credo altre icone?? -->
+   
+  <!-- Boxicons CSS -->
+   <!-- <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'> -->
+
+    <link rel="stylesheet" href="../css/PageLayout.css"> <!--The ../ notation is used to navigate up one level in the directory structure. -->
+    <link rel="stylesheet" href="../css/NButtons.css">
+    <link rel="stylesheet" href="css/GoogleIcons.css">
+    <!-- <link rel="stylesheet" href="css/Buttons.css"> -->
+    <link rel="stylesheet" href="css/My_progress.css">
+
+  <title>SignUpPage</title>
+  <style>
+    /* CSS styles for the signup page */
+    /*questi stili sono tutti da eliminare, o da incorporare in un foglio css!!*/
+    /* body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      margin: 0;
+      padding: 0;
+    }
+
+    .containerWindow {
+      width: 400px;
+      margin: 50px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    } */
+
+    /* h2 {
+      text-align: center;
+    } */
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      border-radius: 4px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      border-radius: 4px;
+    }
+
+    .password-rules {
+      margin-top: 10px;
+      font-size: 12px;
+    }
+
+    .satisfied {
+      color: green;
+    }
+
+    .unsatisfied {
+      color: red;
+    }
+
+    .rule-icon {
+      margin-right: 5px;
+    }
+
+    .password-toggle {
+      position: relative;
+      display: inline-block;
+    }
+
+    .password-toggle .toggle-icon {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+
+
+  </style>
+</head>
+
+<script src="../js/logInManagement.js"></script>
+
+
+<body class="bkg-lightgrey">
+
+
+
+  <!-- ! //SECTION -  ! WELCOME Page -->
+  <!-- TODO Per tutti i bottoni di queste pagine aggiungere " onclick="signup()", con il nome della funzione che devono fare girare!!" -->
+ 
+  <div id="welcomePageDiv" class="containerWindow"> 
+    <!-- È la pagina iniziale, che contiene i bottoni LogIn e SignUp. -->
+    <h1 class="mb-3 d-flex justify-content-center">Benvenuto</h1>
+    <div>Un logo o una descrizione...aggiungi qualcosa per abbellire</div>
+    <p class="mb-5"></p>
+
+    <div class="row">
+      <div class="col d-flex align-items-stretch">
+        <!-- the d-flex class to the columns, which applies the display: flex property to the columns. 
+        The align-items-stretch class makes the buttons stretch to fill the height of the column -->
+        <button type="button" class="btn btn-primary txt-bold txt-24">Accedi</button>
+        <!--  the btn-block class makes them expand to fill the entire width of the column -->
+      </div>
+      <div class="col d-flex align-items-stretch">
+        <button type="button" class="btn bkg-green btn-block txt-bold txt-24">Registrati</button>
+      </div>
+    </div>
+  </div> <!-- id="welcomePageDiv -->
+  <!-- //!SECTION -->
+
+ 
+
+  <!-- ! //SECTION -  LOGIN Page -->
+ 
+  <div id="logInPageDiv" class="containerWindow">
+    <form>
+      <!-- il form invia qualcosa appena premuto, e sembra ricaricare la pagina. mafari si puù eliminare?? !! ?! -->
+      <div class="mb-5">
+        <!-- The mb in mb-3 stands for "margin-bottom," and the 3 indicates the amount of spacing to be applied.  
+        (mb-0, mb-1, mb-2, mb-3, mb-4, mb-5) -->
+        <h1 class="d-flex justify-content-center">Accedi</h1>
+      </div>
+      <div class="mb-3">
+        <label for="InputEmailLogIn" class="form-label">Email address:</label>
+        <input type="email" class="form-control" id="InputEmailLogIn" required placeholder="Inserisci la tua email" aria-describedby="emailHelp">
+        <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+      </div>
+      <div class="mb-3 form-group password-container">
+        <label for="InputPasswordLogIn" class="form-label">Password:</label>
+        <input type="password" class="form-control" id="InputPasswordLogIn" required placeholder="Inserisci la tua password">
+        <i id="toggle-iconInputPasswordLogIn" class="fas fa-eye-slash toggle-password" onclick="togglePasswordVisibilityEYE('InputPasswordLogIn', 'toggle-icon')"></i>
+      </div>
+      <div class="mb-5 form-check">
+        <input type="checkbox" class="form-check-input" id="rememberLogIn">
+        <label class="form-check-label" for="rememberLogIn">Ricordami</label>
+      </div>
+      
+      <button type="submit" class="btn btn-primary btn-lg mb-3 txt-bold">Accedi</button>
+      <div class="row">
+        <div class="col d-flex align-items-stretch">
+          <!-- the d-flex class to the columns, which applies the display: flex property to the columns. 
+          The align-items-stretch class makes the buttons stretch to fill the height of the column -->
+          <button type="button" class="btn btn-danger ">Password dimenticata</button>
+          <!--  the btn-block class makes them expand to fill the entire width of the column -->
+        </div>
+        <div class="col d-flex align-items-stretch">
+          <button type="button" class="btn btn-secondary btn-block">Non ho un Account</button>
+        </div>
+      </div>
+    </form>
+  </div><!-- id="logInPageDiv" -->
+ <!-- //!SECTION -->
+
+
+
+ <!-- ! //SECTION -  SIGNUP Page -->
+
+  <div id="signUpPageDiv" class="containerWindow"> 
+    <form>
+      <!-- il form invia qualcosa appena premuto, e sembra ricaricare la pagina. mafari si puù eliminare?? !! ?! -->
+      <div class="mb-5">
+        <h2 class="txt-28 d-flex justify-content-center">Registrazione</h2>
+      </div>
+      <div class="mb-3">
+        <label for="InputFirstNameSignUp" class="form-label">Nome:</label>
+        <input type="text" class="form-control" id="InputFirstNameSignUp" required placeholder="es: Mario" aria-describedby="nameHelp">
+      </div>
+      <div class="mb-3">
+        <label for="InputLastNameSignUp" class="form-label">Cognome:</label>
+        <input type="text" class="form-control" id="InputLastNameSignUp" required placeholder="es: Rossi" aria-describedby="nameHelp">
+      </div>
+      <div class="mb-3">
+        <label for="InputMailSignUp" class="form-label">Email:</label>
+        <input type="email" class="form-control" id="InputMailSignUp" required placeholder="es: lamiamail@esempio.com" aria-describedby="emailHelp">
+      </div>
+      <div class="mb-3 form-group password-container">
+        <label for="InputPasswordSignUp" class="form-label">Crea Password:</label>
+        <input type="password" class="form-control" id="InputPasswordSignUp" required placeholder="Crea una password" oninput="checkCreatedPassword()">
+        <i id="toggle-iconInputPasswordSignUp" class="fas fa-eye-slash toggle-password" onclick="togglePasswordVisibilityEYE('InputPasswordSignUp', 'toggle-iconInputPasswordSignUp')"></i>
+      </div>
+      <div id="PasswordCreationTxtCriteriaMet" class="password-rules mb-3"></div>
+      <div class="mb-3 form-group password-container">
+        <!-- TODO il simbolo la conferma password deve essere uguale a quella creata!-->
+        <label for="InputConfirmPasswordSignUp" class="form-label">Conferma Password:</label>
+        <input type="password" class="form-control" id="InputConfirmPasswordSignUp" required placeholder="Conferma la tua password" oninput="checkCreatedPassword()">
+        <i id="toggle-iconInputConfirmPasswordSignUp" class="fas fa-eye-slash toggle-password" onclick="togglePasswordVisibilityEYE('InputConfirmPasswordSignUp', 'toggle-iconInputConfirmPasswordSignUp')"></i>
+      </div>
+      <div id="PasswordConfirmTxtCriteriaMet" class="password-rules mb-3"></div>
+
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Ricordami</label>
+      </div>
+      
+      <button type="submit" class="btn btn-primary btn-lg txt-bold">Registrati</button>
+      <div class="row">
+        <div class="col d-flex align-items-stretch">
+          <button type="button" class="btn btn-danger">
+            <i class="fas fa-arrow-left fa-lg" style="margin-right: 10px;"></i>
+            <span class="txt-20"> Indietro</span>
+          </button>
+          <!--  the btn-block class makes them expand to fill the entire width of the column -->
+        </div>
+        <div class="col d-flex align-items-stretch">
+          <button type="button" class="btn btn-secondary btn-block">Hai già un Account? <span class="txt-white txt-20 txt-bold">ACCEDI</span></button>
+        </div>
+      </div>
+    </form>
+  </div><!-- id="signUpPageDiv" -->
+  <!-- //!SECTION -->
+
+
+  <!-- ! //SECTION -  password-rules -->
+  
+  <div class="containerWindow">
+    <h2>Registrazione</h2>
+
+    
+    <div id="criteria" class="password-rules mb-3"> 
+      <!-- TODO - scegliere solo alcuni dei criteri, altrimenti è una seccatura inventare la password! -->
+      <!-- TODO il simbolo ✓ e la X devono esseri inseriti dal criterio!-->
+      La password deve contenere:<!-- Password should contain -->
+      <p id="lengthRule" class="mb-0"><span class="rule-icon">✓</span>Almeno 8 caratteri</p><!-- At least 8 characters -->
+      <p id="uppercaseRule" class="mb-0"><span class="rule-icon">✓</span>Almeno una lettera maiuscola</p><!-- At least one uppercase letter -->
+      <p id="lowercaseRule" class="mb-0"><span class="rule-icon">✓</span>Almeno una lettera minuscola</p> <!-- At least one lowercase letter -->
+      <p id="digitRule" class="mb-0"><span class="rule-icon">✓</span>Almeno un numero</p><!-- At least one digit -->
+      <p id="specialCharRule" class="mb-0"><span class="rule-icon">✓</span>Almeno un carattere speciale (!@#$%^&*)</p><!-- At least one special character (!@#$%^&*) -->
+      <p id="confirmPasswordRule" class="mb-0"><span class="rule-icon">✓</span>La password confermata deve essere uguale a quella creata</p><!-- </div> -->
+
+      <button type="button" onclick="signup()">Sign Up</button>
+    </div>
+  </div>
+
+  <script>
+    var InputPasswordSignUp = document.getElementById('InputPasswordSignUp');
+    var InputConfirmPasswordSignUp = document.getElementById('InputConfirmPasswordSignUp');
+    var lengthRule = document.getElementById('lengthRule');
+    var uppercaseRule = document.getElementById('uppercaseRule');
+    var lowercaseRule = document.getElementById('lowercaseRule');
+    var digitRule = document.getElementById('digitRule');
+    var specialCharRule = document.getElementById('specialCharRule');
+    var confirmPasswordRule = document.getElementById('confirmPasswordRule');
+    var AllPSWCriteriaMet = false;        //solo se questo criterio è soddisfatto si può procedere con la registrazione!
+    //TODO Aggiungere qualcosa che permetta di abilitare la registrazione solo se è true!
+
+    //TODO l'event listener si apre solo se parte la funzione signup, giuso??
+    function checkCreatedPassword() {
+      var password = document.getElementById('InputPasswordSignUp');
+      var PasswordCreationTxtCriteriaMet = document.getElementById('PasswordCreationTxtCriteriaMet');
+      var PasswordConfirmTxtCriteriaMet = document.getElementById('PasswordConfirmTxtCriteriaMet');
+      var confirmedPassword = document.getElementById('InputConfirmPasswordSignUp');
+      
+      var lengthRegex = /.{8,}/;
+      var uppercaseRegex = /[A-Z]/;
+      var lowercaseRegex = /[a-z]/;
+      var digitRegex = /\d/;
+      var specialCharRegex = /[!@#$%^&*()\-=_+[\]{};':"\\|,.<>/?]+/;
+      
+      var PasswordCreationTxtCriteriaMetArray = [];//è il testo che mostra sotto la password
+      var TxtCriteria = ["Almeno 8 caratteri","Almeno una lettera maiuscola","Almeno una lettera minuscola","Almeno un numero","Almeno un carattere speciale (!@#$%^&*)"];
+      var LawCriteria = [lengthRegex,uppercaseRegex,lowercaseRegex,digitRegex,specialCharRegex];
+
+      var passwordCreationCriteriaMet = true;
+      for (var i=0;i<LawCriteria.length;i++){
+        if (LawCriteria[i].test(password.value)) {
+          PasswordCreationTxtCriteriaMetArray.push('<span class="met txt-green">✓ '+TxtCriteria[i]+'</span>');
+        } else {
+          passwordCreationCriteriaMet = false;
+          // console.log(TxtCriteria[i]+" NOT MET!");
+          PasswordCreationTxtCriteriaMetArray.push('<span class="criteria txt-red">× '+TxtCriteria[i]+'</span>');
+        }
+      }
+      PasswordCreationTxtCriteriaMet.innerHTML = PasswordCreationTxtCriteriaMetArray.join('<br>');
+
+      //colora il bordo della password creata
+      if (passwordCreationCriteriaMet) {
+        password.style.borderColor = 'green';
+        PasswordCreationTxtCriteriaMet.innerHTML = "";
+      } else {
+        password.style.borderColor = 'red';
+      }
+      // console.log("passwordCreationCriteriaMet: "+passwordCreationCriteriaMet)
+
+
+
+      
+      //e poi l'uguaglianza con quella confermata:
+      var passwordConfirmCriterionMet = true;
+      if (confirmedPassword.value == password.value) {
+        PasswordConfirmTxtCriteriaMet.innerHTML = ('<span class="txt-green">✓ "La password confermata deve essere uguale a quella creata"</span>');
+        PasswordConfirmTxtCriteriaMet.innerHTML = "";
+      } else {
+        passwordConfirmCriterionMet = false;
+        // console.log("La password confermata deve essere uguale a quella creata NOT MET!");
+        PasswordConfirmTxtCriteriaMet.innerHTML = ('<span class="txt-red">× "La password confermata deve essere uguale a quella creata"</span>');
+      }
+
+      //colora il bordo della password creata
+      if (passwordConfirmCriterionMet) {
+        confirmedPassword.style.borderColor = 'green';
+      } else {
+        confirmedPassword.style.borderColor = 'red';
+      }
+
+      //solo se questo criterio è soddisfatto si può procedere con la registrazione
+      AllPSWCriteriaMet=(passwordConfirmCriterionMet && passwordConfirmCriterionMet)
+      console.log(AllPSWCriteriaMet);
+
+    }
+
+
+
+
+
+    function signup() {
+      var firstName = document.getElementById('firstName').value;
+      var surname = document.getElementById('surname').value;
+      var email = document.getElementById('email').value;
+      var password = document.getElementById('password').value;
+      var repeatPassword = document.getElementById('repeatPassword').value;
+
+      if (password !== repeatPassword) {
+        alert('Password and repeat password do not match');
+        return;
+      }
+
+      // Password validation
+      var passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
+      if (!passwordRegex.test(password)) {
+        alert('Invalid password. Please ensure your password meets the requirements.');
+        return;
+      }
+
+      // Perform signup logic here
+      // ...
+
+      alert('Signup successful!');
+    }
+  </script>
+</body>
+</html>
